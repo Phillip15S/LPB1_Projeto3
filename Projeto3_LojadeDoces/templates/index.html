@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Loja de Doces</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Bem-vindo à Loja de Doces!</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <h2>Nossos Produtos</h2>
+    <div class="produtos">
+        <div class="produto">
+            <img src="{{ url_for('static', filename='imagens/bolo.jpg') }}" alt="Bolo" />
+            <h3>Bolo</h3>
+            <p>Preço: R$ 25,00</p>
+            <a href="{{ url_for('adicionar_ao_carrinho', produto='Bolo') }}" class="btn">Adicionar ao Carrinho</a>
+        </div>
+        <div class="produto">
+            <img src="{{ url_for('static', filename='imagens/torta.jpg') }}" alt="Torta" />
+            <h3>Torta</h3>
+            <p>Preço: R$ 30,00</p>
+            <a href="{{ url_for('adicionar_ao_carrinho', produto='Torta') }}" class="btn">Adicionar ao Carrinho</a>
+        </div>
+        <div class="produto">
+            <img src="{{ url_for('static', filename='imagens/pudim.jpg') }}" alt="Pudim" />
+            <h3>Pudim</h3>
+            <p>Preço: R$ 15,00</p>
+            <a href="{{ url_for('adicionar_ao_carrinho', produto='Pudim') }}" class="btn">Adicionar ao Carrinho</a>
+        </div>
+        <div class="produto">
+            <img src="{{ url_for('static', filename='imagens/docinho.jpg') }}" alt="Docinho" />
+            <h3>Docinho</h3>
+            <p>Preço: R$ 10,00</p>
+            <a href="{{ url_for('adicionar_ao_carrinho', produto='Docinho') }}" class="btn">Adicionar ao Carrinho</a>
+        </div>
+        <div class="produto">
+            <img src="{{ url_for('static', filename='imagens/brownie.jpg') }}" alt="Brownie" />
+            <h3>Brownie</h3>
+            <p>Preço: R$ 20,00</p>
+            <a href="{{ url_for('adicionar_ao_carrinho', produto='Brownie') }}" class="btn">Adicionar ao Carrinho</a>
+        </div>
+        <div class="produto">
+            <img src="{{ url_for('static', filename='imagens/cheesecake.jpg') }}" alt="Cheesecake" />
+            <h3>Cheesecake</h3>
+            <p>Preço: R$ 35,00</p>
+            <a href="{{ url_for('adicionar_ao_carrinho', produto='Cheesecake') }}" class="btn">Adicionar ao Carrinho</a>
+        </div>
+    </div>
+
+    <a href="{{ url_for('carrinho') }}" class="btn">Ver Carrinho</a>
+    <a href="{{ url_for('auth.logout') }}" class="btn">Logout</a>
+</body>
+</html>
