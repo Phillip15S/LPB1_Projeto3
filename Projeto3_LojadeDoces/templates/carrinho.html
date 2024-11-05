@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='carrinho.css') }}">
+</head>
+<body>
+    <h1>Carrinho de Compras</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <div class="carrinho">
+        {% if produtos %}
+            <ul>
+                {% for produto in produtos %}
+                    <li>
+                        {{ produto }}
+                        <form action="{{ url_for('remover_do_carrinho', produto=produto) }}" method="POST" style="display:inline;">
+                            <button type="submit">Remover</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Seu carrinho está vazio.</p>
+        {% endif %}
+    </div>
+
+    <a href="{{ url_for('index') }}" class="btn">Voltar aos Produtos</a>
+</body>
+</html>
